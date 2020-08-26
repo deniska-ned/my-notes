@@ -20,9 +20,5 @@
         android:id="@+id/newWordFragment"
         android:name="com.nedoluzhko.mydatabase.newWord.NewWordFragment"
         android:label="new_word_fragment"
-        tools:layout="@layout/new_word_fragment">
-        <action
-            android:id="@+id/action_newWordFragment_to_wordListFragment"
-            app:destination="@id/wordListFragment" />
-    </fragment>
+        tools:layout="@layout/new_word_fragment"/>
 </navigation>

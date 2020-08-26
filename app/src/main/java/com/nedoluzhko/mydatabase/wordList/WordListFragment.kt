@@ -1,11 +1,15 @@
 package com.nedoluzhko.mydatabase.wordList
 
+import android.app.Activity
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -42,7 +46,7 @@ class WordListFragment : Fragment(), WordListAdapter.WordListListener {
         }
 
         viewModel.allWords.observe(viewLifecycleOwner, { words ->
-            words?.let { wordListAdapter.setWords(words) }
+            words?.let { wordListAdapter.data = words }
         })
 
         viewModel.navigateToNewWordFragment.observe(viewLifecycleOwner, { newStatus ->
@@ -52,6 +56,12 @@ class WordListFragment : Fragment(), WordListAdapter.WordListListener {
             }
         })
         return binding.root
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        (activity as AppCompatActivity).supportActionBar?.title =
+            getString(R.string.word_list_title)
     }
 
     override fun onItemClick(pos: Int) {

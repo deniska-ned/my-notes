@@ -3,4 +3,8 @@
     <string name="add_new_word_edit_text">Enter a new word</string>
     <string name="add_button">Add</string>
     <string name="list_item_format">%d - %s</string>
+
+    <!--Titles-->
+    <string name="word_list_title">Word list</string>
+    <string name="new_word_title">Add a new word</string>
 </resources>
