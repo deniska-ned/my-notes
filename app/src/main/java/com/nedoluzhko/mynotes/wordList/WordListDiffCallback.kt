@@ -1,10 +1,12 @@
-package com.nedoluzhko.mydatabase.wordList
+package com.nedoluzhko.mynotes.wordList
 
 import androidx.recyclerview.widget.DiffUtil
-import com.nedoluzhko.mydatabase.database.WordEntity
+import com.nedoluzhko.mynotes.database.WordEntity
 
-class WordListDiffCallback(val oldData: List<WordEntity>, val newData: List<WordEntity>) :
-    DiffUtil.Callback() {
+class WordListDiffCallback(
+    private val oldData: List<WordEntity>,
+    private val newData: List<WordEntity>
+) : DiffUtil.Callback() {
 
     override fun getOldListSize(): Int {
         return oldData.size

@@ -6,7 +6,7 @@
 
         <variable
             name="newWordViewModel"
-            type="com.nedoluzhko.mydatabase.newWord.NewWordViewModel" />
+            type="com.nedoluzhko.mynotes.newWord.NewWordViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

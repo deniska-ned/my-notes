@@ -1,20 +1,18 @@
-package com.nedoluzhko.mydatabase.newWord
+package com.nedoluzhko.mynotes.newWord
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.nedoluzhko.mydatabase.R
-import com.nedoluzhko.mydatabase.databinding.NewWordFragmentBinding
+import com.nedoluzhko.mynotes.R
+import com.nedoluzhko.mynotes.databinding.NewWordFragmentBinding
 
 class NewWordFragment : Fragment() {
-
-//    private val TAG = "NewWordFragment"
 
     private lateinit var viewModel: NewWordViewModel
     private lateinit var binding: NewWordFragmentBinding
@@ -29,6 +27,7 @@ class NewWordFragment : Fragment() {
             container,
             false
         )
+
         val application = requireNotNull(this.activity).application
         val viewModelFactory = NewWordViewModelFactory(application)
         viewModel = ViewModelProvider(this, viewModelFactory).get(NewWordViewModel::class.java)
@@ -38,11 +37,8 @@ class NewWordFragment : Fragment() {
 
         viewModel.navigateToWordListFragment.observe(viewLifecycleOwner, { newStatus ->
             if (newStatus == true) {
-//                findNavController(this).navigate(
-//                    R.id.action_newWordFragment_to_wordListFragment
-//                )
                 findNavController().popBackStack()
-                viewModel.navigateToWordListFragment.value = false
+//                viewModel.navigateToWordListFragment.value = false
             }
         })
 

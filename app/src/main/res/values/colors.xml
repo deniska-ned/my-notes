@@ -4,6 +4,6 @@
     <color name="colorPrimaryDark">#317872</color>
     <color name="colorAccent">#DF4B3E</color>
 
-    <color name="backgroundColor">#F1F3F2</color>
+    <color name="list_item_background">#F1F3F2</color>
 
 </resources>

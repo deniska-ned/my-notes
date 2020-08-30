@@ -1,19 +1,17 @@
-package com.nedoluzhko.mydatabase
+package com.nedoluzhko.mynotes
 
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.nedoluzhko.mydatabase.database.WordDao
-import com.nedoluzhko.mydatabase.database.WordDatabase
-import com.nedoluzhko.mydatabase.database.WordEntity
+import com.nedoluzhko.mynotes.database.WordDao
+import com.nedoluzhko.mynotes.database.WordDatabase
+import com.nedoluzhko.mynotes.database.WordEntity
 import org.junit.After
-
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-
-import org.junit.Before
 import java.io.IOException
 
 /**

@@ -1,4 +1,4 @@
-package com.nedoluzhko.mydatabase.database
+package com.nedoluzhko.mynotes.database
 
 import android.content.Context
 import androidx.room.Database

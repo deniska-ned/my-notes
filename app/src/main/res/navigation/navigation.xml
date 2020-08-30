@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/wordListFragment"
-        android:name="com.nedoluzhko.mydatabase.wordList.WordListFragment"
+        android:name="com.nedoluzhko.mynotes.wordList.WordListFragment"
         android:label="word_list_fragment"
         app:startDestination="@id/action_wordListFragment_to_newWordFragment"
         tools:layout="@layout/word_list_fragment">
@@ -18,7 +18,7 @@
 
     <fragment
         android:id="@+id/newWordFragment"
-        android:name="com.nedoluzhko.mydatabase.newWord.NewWordFragment"
+        android:name="com.nedoluzhko.mynotes.newWord.NewWordFragment"
         android:label="new_word_fragment"
-        tools:layout="@layout/new_word_fragment"/>
+        tools:layout="@layout/new_word_fragment" />
 </navigation>

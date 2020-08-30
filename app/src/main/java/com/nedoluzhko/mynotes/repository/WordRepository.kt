@@ -1,8 +1,8 @@
-package com.nedoluzhko.mydatabase.repository
+package com.nedoluzhko.mynotes.repository
 
 import androidx.lifecycle.LiveData
-import com.nedoluzhko.mydatabase.database.WordDao
-import com.nedoluzhko.mydatabase.database.WordEntity
+import com.nedoluzhko.mynotes.database.WordDao
+import com.nedoluzhko.mynotes.database.WordEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -15,15 +15,15 @@ class WordRepository(private val wordDao: WordDao) {
         }
     }
 
-    suspend fun deleteAll() {
-        withContext(Dispatchers.IO) {
-            wordDao.deleteAll()
-        }
-    }
-
     suspend fun delete(wordEntity: WordEntity) {
         withContext(Dispatchers.IO) {
             wordDao.delete(wordEntity)
+        }
+    }
+
+    suspend fun deleteByIds(ids: List<Long>) {
+        withContext(Dispatchers.IO) {
+            for (id in ids) wordDao.deleteById(id)
         }
     }
 }
