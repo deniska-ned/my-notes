@@ -55,7 +55,7 @@ class WordListFragment : Fragment(), WordListAdapter.WordListListener {
             layoutManager = LinearLayoutManager(context)
             adapter = wordListAdapter
         }
-        configurateSelectionTracker(binding.recyclerView, wordListAdapter)
+        configurateSelectionTracker(binding.recyclerView, wordListAdapter, savedInstanceState)
 
         // Observe block
         viewModel.allWords.observe(viewLifecycleOwner, { words ->
@@ -65,6 +65,7 @@ class WordListFragment : Fragment(), WordListAdapter.WordListListener {
 
         viewModel.navigateToNewWordFragment.observe(viewLifecycleOwner, { newStatus ->
             if (newStatus == true) {
+                actionMode?.finish()
                 findNavController().navigate(R.id.action_wordListFragment_to_newWordFragment)
                 viewModel.navigateToNewWordFragment.value = false
             }
@@ -74,7 +75,8 @@ class WordListFragment : Fragment(), WordListAdapter.WordListListener {
 
     private fun configurateSelectionTracker(
         rv: RecyclerView,
-        wordListAdapter: WordListAdapter
+        wordListAdapter: WordListAdapter,
+        savedInstanceState: Bundle?
     ) {
         tracker = SelectionTracker.Builder(
             "mySelection",
@@ -84,6 +86,19 @@ class WordListFragment : Fragment(), WordListAdapter.WordListListener {
             StorageStrategy.createLongStorage()
         ).withSelectionPredicate(SelectionPredicates.createSelectAnything())
             .build()
+
+        if (null != savedInstanceState) {
+            tracker.onRestoreInstanceState(savedInstanceState)
+
+            if (tracker.selection.size() > 0) {
+                val actionModeCallback = ActionModeCallback(viewModel)
+                actionMode =
+                    (activity as AppCompatActivity).startSupportActionMode(actionModeCallback)
+                actionMode!!.title = tracker.selection.size().toString()
+            }
+
+            Log.i(classTag, "SelectionTracker restore state")
+        }
 
         wordListAdapter.tracker = tracker
         viewModel.tracker = tracker
@@ -127,5 +142,11 @@ class WordListFragment : Fragment(), WordListAdapter.WordListListener {
         } else {
             Toast.makeText(context, "Item index: $pos", Toast.LENGTH_LONG).show()
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+        tracker.onSaveInstanceState(outState)
     }
 }

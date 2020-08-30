@@ -17,6 +17,8 @@ class WordKeyProvider(private val recyclerView: RecyclerView) :
         for (i in items.indices) {
             if (key == items[i].id) return i
         }
-        throw Exception("WordKeyProvider.getPosition failed")
+
+        return -1
+//        throw Exception("WordKeyProvider.getPosition failed")
     }
 }
