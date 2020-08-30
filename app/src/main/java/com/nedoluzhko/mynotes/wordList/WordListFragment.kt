@@ -59,6 +59,7 @@ class WordListFragment : Fragment(), WordListAdapter.WordListListener {
 
         // Observe block
         viewModel.allWords.observe(viewLifecycleOwner, { words ->
+            binding.emptyListIndicator.visibility = if (0 == words.size) View.VISIBLE else View.GONE
             words?.let { wordListAdapter.data = words }
         })
 
