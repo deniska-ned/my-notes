@@ -15,15 +15,15 @@ class WordRepository(private val wordDao: WordDao) {
         }
     }
 
-    suspend fun deleteAll() {
-        withContext(Dispatchers.IO) {
-            wordDao.deleteAll()
-        }
-    }
-
     suspend fun delete(wordEntity: WordEntity) {
         withContext(Dispatchers.IO) {
             wordDao.delete(wordEntity)
+        }
+    }
+
+    suspend fun deleteByIds(ids: List<Long>) {
+        withContext(Dispatchers.IO) {
+            for (id in ids) wordDao.deleteById(id)
         }
     }
 }

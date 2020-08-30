@@ -1,29 +1,38 @@
 package com.nedoluzhko.mydatabase.wordList
 
-import android.app.Activity
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.view.ActionMode
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.selection.SelectionPredicates
+import androidx.recyclerview.selection.SelectionTracker
+import androidx.recyclerview.selection.StorageStrategy
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.nedoluzhko.mydatabase.R
 import com.nedoluzhko.mydatabase.databinding.WordListFragmentBinding
 
 class WordListFragment : Fragment(), WordListAdapter.WordListListener {
 
+    private val classTag = "WordListFragment"
+
     private lateinit var viewModel: WordListViewModel
     private lateinit var binding: WordListFragmentBinding
 
+    private var actionMode: ActionMode? = null
+    lateinit var tracker: SelectionTracker<Long>
+
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(
@@ -33,18 +42,22 @@ class WordListFragment : Fragment(), WordListAdapter.WordListListener {
             false
         )
 
+        // ViewModel
         val application = requireNotNull(this.activity).application
         val viewModelFactory = WordListViewModelFactory(application)
         viewModel = ViewModelProvider(this, viewModelFactory).get(WordListViewModel::class.java)
         binding.wordListViewModel = viewModel
         binding.lifecycleOwner = this
 
+        // RecyclerView
         val wordListAdapter = WordListAdapter(this)
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = wordListAdapter
         }
+        configurateSelectionTracker(binding.recyclerView, wordListAdapter)
 
+        // Observe block
         viewModel.allWords.observe(viewLifecycleOwner, { words ->
             words?.let { wordListAdapter.data = words }
         })
@@ -58,6 +71,49 @@ class WordListFragment : Fragment(), WordListAdapter.WordListListener {
         return binding.root
     }
 
+    private fun configurateSelectionTracker(
+        rv: RecyclerView,
+        wordListAdapter: WordListAdapter
+    ) {
+        tracker = SelectionTracker.Builder(
+            "mySelection",
+            rv,
+            WordKeyProvider(rv),
+            WordListLookup(rv),
+            StorageStrategy.createLongStorage()
+        ).withSelectionPredicate(SelectionPredicates.createSelectAnything())
+            .build()
+
+        wordListAdapter.tracker = tracker
+        viewModel.tracker = tracker
+
+        tracker.addObserver(object : SelectionTracker.SelectionObserver<Long>() {
+            override fun onSelectionChanged() {
+                super.onSelectionChanged()
+
+                if (tracker.hasSelection() && actionMode == null) {
+                    val actionModeCallback = ActionModeCallback(viewModel)
+                    actionMode =
+                        (activity as AppCompatActivity).startSupportActionMode(actionModeCallback)
+                    actionMode!!.title = tracker.selection.size().toString()
+                    Log.i(classTag, "ActionMode created")
+                } else if (!tracker.hasSelection()) {
+                    actionMode?.finish()
+                    actionMode = null
+                    Log.i(classTag, "ActionMode finished")
+                } else {
+                    actionMode!!.title = tracker.selection.size().toString()
+                    Log.i(
+                        classTag, """ActionMode updated:
+                        |Selection size: ${tracker.selection.size()}
+                        |Selected ids: ${viewModel.getSelectedItemsIds()}
+                    """.trimMargin()
+                    )
+                }
+            }
+        })
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         (activity as AppCompatActivity).supportActionBar?.title =
@@ -65,9 +121,10 @@ class WordListFragment : Fragment(), WordListAdapter.WordListListener {
     }
 
     override fun onItemClick(pos: Int) {
-        viewModel.allWords.value?.get(pos)?.let { viewModel.delete(it) } ?: run {
-            Toast.makeText(context, "Item is not deleted", Toast.LENGTH_LONG).show()
+        if (viewModel.allWords.value != null) {
+            viewModel.delete(viewModel.allWords.value!![pos])
+        } else {
+            Toast.makeText(context, "Item index: $pos", Toast.LENGTH_LONG).show()
         }
-        Toast.makeText(context, "Message $pos", Toast.LENGTH_LONG).show()
     }
 }

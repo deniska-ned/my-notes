@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
-            android:background="@color/backgroundColor"
+            android:background="@drawable/word_list_item_background"
             android:padding="4dp"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
