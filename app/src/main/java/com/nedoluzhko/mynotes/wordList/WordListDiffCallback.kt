@@ -1,7 +1,7 @@
-package com.nedoluzhko.mydatabase.wordList
+package com.nedoluzhko.mynotes.wordList
 
 import androidx.recyclerview.widget.DiffUtil
-import com.nedoluzhko.mydatabase.database.WordEntity
+import com.nedoluzhko.mynotes.database.WordEntity
 
 class WordListDiffCallback(
     private val oldData: List<WordEntity>,

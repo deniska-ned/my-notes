@@ -1,4 +1,4 @@
-package com.nedoluzhko.mydatabase.wordList
+package com.nedoluzhko.mynotes.wordList
 
 import android.os.Bundle
 import android.util.Log
@@ -17,8 +17,8 @@ import androidx.recyclerview.selection.SelectionTracker
 import androidx.recyclerview.selection.StorageStrategy
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.nedoluzhko.mydatabase.R
-import com.nedoluzhko.mydatabase.databinding.WordListFragmentBinding
+import com.nedoluzhko.mynotes.R
+import com.nedoluzhko.mynotes.databinding.WordListFragmentBinding
 
 class WordListFragment : Fragment(), WordListAdapter.WordListListener {
 

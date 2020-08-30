@@ -7,7 +7,7 @@
 
         <variable
             name="wordListViewModel"
-            type="com.nedoluzhko.mydatabase.wordList.WordListViewModel" />
+            type="com.nedoluzhko.mynotes.wordList.WordListViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -1,8 +1,8 @@
-package com.nedoluzhko.mydatabase.repository
+package com.nedoluzhko.mynotes.repository
 
 import androidx.lifecycle.LiveData
-import com.nedoluzhko.mydatabase.database.WordDao
-import com.nedoluzhko.mydatabase.database.WordEntity
+import com.nedoluzhko.mynotes.database.WordDao
+import com.nedoluzhko.mynotes.database.WordEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

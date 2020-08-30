@@ -1,4 +1,4 @@
-package com.nedoluzhko.mydatabase.newWord
+package com.nedoluzhko.mynotes.newWord
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,8 +9,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.nedoluzhko.mydatabase.R
-import com.nedoluzhko.mydatabase.databinding.NewWordFragmentBinding
+import com.nedoluzhko.mynotes.R
+import com.nedoluzhko.mynotes.databinding.NewWordFragmentBinding
 
 class NewWordFragment : Fragment() {
 

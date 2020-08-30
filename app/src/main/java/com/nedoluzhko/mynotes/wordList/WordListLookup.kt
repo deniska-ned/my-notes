@@ -1,4 +1,4 @@
-package com.nedoluzhko.mydatabase.wordList
+package com.nedoluzhko.mynotes.wordList
 
 import android.view.MotionEvent
 import androidx.recyclerview.selection.ItemDetailsLookup

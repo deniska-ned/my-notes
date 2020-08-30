@@ -1,4 +1,4 @@
-package com.nedoluzhko.mydatabase.wordList
+package com.nedoluzhko.mynotes.wordList
 
 import androidx.recyclerview.selection.ItemKeyProvider
 import androidx.recyclerview.widget.RecyclerView

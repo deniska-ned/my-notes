@@ -1,4 +1,4 @@
-package com.nedoluzhko.mydatabase.wordList
+package com.nedoluzhko.mynotes.wordList
 
 import android.content.res.Resources
 import android.view.LayoutInflater
@@ -7,9 +7,9 @@ import androidx.recyclerview.selection.ItemDetailsLookup
 import androidx.recyclerview.selection.SelectionTracker
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.nedoluzhko.mydatabase.R
-import com.nedoluzhko.mydatabase.database.WordEntity
-import com.nedoluzhko.mydatabase.databinding.WordListRecyclerItemBinding
+import com.nedoluzhko.mynotes.R
+import com.nedoluzhko.mynotes.database.WordEntity
+import com.nedoluzhko.mynotes.databinding.WordListRecyclerItemBinding
 
 class WordListAdapter(private val listener: WordListListener) :
     RecyclerView.Adapter<WordListAdapter.MyViewHolder>() {

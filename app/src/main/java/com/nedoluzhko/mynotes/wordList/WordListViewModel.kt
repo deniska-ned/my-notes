@@ -1,4 +1,4 @@
-package com.nedoluzhko.mydatabase.wordList
+package com.nedoluzhko.mynotes.wordList
 
 import android.app.Application
 import android.util.Log
@@ -6,9 +6,9 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.selection.SelectionTracker
-import com.nedoluzhko.mydatabase.database.WordDatabase
-import com.nedoluzhko.mydatabase.database.WordEntity
-import com.nedoluzhko.mydatabase.repository.WordRepository
+import com.nedoluzhko.mynotes.database.WordDatabase
+import com.nedoluzhko.mynotes.database.WordEntity
+import com.nedoluzhko.mynotes.repository.WordRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

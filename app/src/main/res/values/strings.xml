@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">myDatabase</string>
+    <string name="app_name">My notes</string>
     <string name="add_new_word_edit_text">Enter a new word</string>
     <string name="add_button">Add</string>
     <string name="test_list_item_format">%d - %d - %s</string>

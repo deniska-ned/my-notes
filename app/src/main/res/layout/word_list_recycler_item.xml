@@ -8,7 +8,7 @@
 
         <variable
             name="word"
-            type="com.nedoluzhko.mydatabase.database.WordEntity" />
+            type="com.nedoluzhko.mynotes.database.WordEntity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

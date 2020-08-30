@@ -1,10 +1,10 @@
-package com.nedoluzhko.mydatabase.wordList
+package com.nedoluzhko.mynotes.wordList
 
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.view.ActionMode
-import com.nedoluzhko.mydatabase.R
+import com.nedoluzhko.mynotes.R
 
 class ActionModeCallback(private val viewModel: WordListViewModel) : ActionMode.Callback {
 

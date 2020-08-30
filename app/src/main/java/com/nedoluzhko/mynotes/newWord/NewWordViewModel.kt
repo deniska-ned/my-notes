@@ -1,11 +1,12 @@
-package com.nedoluzhko.mydatabase.newWord
+package com.nedoluzhko.mynotes.newWord
 
 import android.app.Application
 import android.util.Log
-import androidx.lifecycle.*
-import com.nedoluzhko.mydatabase.database.WordDatabase
-import com.nedoluzhko.mydatabase.database.WordEntity
-import com.nedoluzhko.mydatabase.repository.WordRepository
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MutableLiveData
+import com.nedoluzhko.mynotes.database.WordDatabase
+import com.nedoluzhko.mynotes.database.WordEntity
+import com.nedoluzhko.mynotes.repository.WordRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

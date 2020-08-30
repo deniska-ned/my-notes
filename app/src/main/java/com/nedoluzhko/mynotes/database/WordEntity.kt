@@ -1,4 +1,4 @@
-package com.nedoluzhko.mydatabase.database
+package com.nedoluzhko.mynotes.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
